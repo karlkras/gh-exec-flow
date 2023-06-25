@@ -1,4 +1,4 @@
-name: Resuable Deploy
+name: Reusable Deploy
 on: 
   workflow_call:
     inputs:
@@ -11,10 +11,13 @@ on:
       result: 
         description: The result of the deployment
         value: ${{ jobs.deploy.outputs.outcome }}
+    # secrets:
+      # some-secret:
+        # required: false
 jobs:
   deploy:
     outputs:
-      outcome: ${{ steps.set-result.outputs.step-results }}
+      outcome: ${{ steps.set-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
